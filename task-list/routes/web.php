@@ -23,3 +23,20 @@ Route::get('/',function(){
     return 'Hello World';
 
 });
+
+Route::get('/xxx', function () {
+    return 'Hello';
+})->name('hello');
+
+Route::get('/halloween', function () {
+    return redirect()->route('hello');
+});
+
+Route::get('/greet/{name}', function ($name) {
+    return 'Hello ' . $name . '!';
+});
+
+Route::fallback(function () {
+    return 'Still got somewhere!';
+});
+
