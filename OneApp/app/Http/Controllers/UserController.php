@@ -8,6 +8,14 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
+
+    public function showProfile(User $user){
+
+        $posts= $user->posts()->latest()->get();
+
+        return view('profile-posts',['username'=> $user->username,'posts'=>$posts]);
+    }
+
     public function logout() {
         auth()->logout();
         return redirect('/')->with('success', 'You are now logged out.');

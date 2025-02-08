@@ -9,7 +9,12 @@ class PostController extends Controller
 {
     //
     public function showCreateForm(){
-        return view('create-post');
+        if(auth()->check()){
+            return view('create-post');
+        }else{
+            return redirect("/");
+        }
+        
     }
 
     public function storeNewPost(Request $request){
